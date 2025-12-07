@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuestra Historia</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #0f0f0f;
+        color: #fff;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      header {
+        text-align: center;
+        padding: 50px 16px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        animation: fadeIn 2s ease;
+      }
+
+      p.subtitle {
+        font-size: 0.95rem;
+        opacity: 0.75;
+        padding: 0 10px;
+        animation: fadeIn 2.4s ease;
+      }
+
+      /* TIMELINE */
+      .timeline {
+        width: 94%;
+        max-width: 500px;
+        margin: 20px auto;
+        position: relative;
+      }
+
+      .line {
+        position: absolute;
+        left: 20px;
+        width: 3px;
+        height: 100%;
+        background: #ffffff25;
+      }
+
+      .event {
+        width: 80%;
+        padding: 16px 18px 16px 40px;
+        margin-bottom: 40px;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+        background: #ffffff10;
+        border-radius: 14px;
+        backdrop-filter: blur(6px);
+        line-height: 1.45;
+        font-size: 0.9rem;
+      }
+
+      .event.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .event h3 {
+        margin: 0 0 5px;
+        font-size: 1.1rem;
+        color: #ff9ecb;
+        line-height: 1.2;
+      }
+
+      .event p {
+        opacity: 0.9;
+        font-size: 0.9rem;
+      }
+
+      .dot {
+        position: absolute;
+        top: 14px;
+        left: 12px;
+        width: 12px;
+        height: 12px;
+        background: #ff9ecb;
+        border-radius: 50%;
+      }
+
+      .dedi {
+        font-size: 0.85rem;
+        margin-top: 4px;
+        opacity: 0.6;
+        font-weight: 700;
+        color: #ff9ecb;
+      }
+
+      /* CARTA FINAL */
+      .carta {
+        width: 70%;
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 24px;
+        background: #ffffff10;
+        border-radius: 16px;
+        backdrop-filter: blur(6px);
+        animation: fadeIn 2s ease;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .carta h2 {
+        color: #ff9ecb;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* RESPONSIVE TWEAKS */
+      @media (max-width: 430px) {
+        h1 {
+          font-size: 1.8rem;
+        }
+        .event {
+          font-size: 0.88rem;
+          padding-left: 42px;
+        }
+        .dot {
+          left: 10px;
+        }
+        .line {
+          left: 18px;
+        }
+        .carta {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio autoplay loop>
+      <source
+        src="./Reik-CreoenTi.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <header>
+      <h1>Nuestra Historia</h1>
+      <p class="subtitle">Un viaje contado desde el corazón.</p>
+      <p class="dedi">Jasmin M & Joel M</p>
+    </header>
+
+    <div class="timeline">
+      <div class="line"></div>
+      <div id="events-container"></div>
+    </div>
+
+    <div class="carta">
+      <h2>Mi Carta Para Ti</h2>
+      <p>
+        Gracias por caminar ❤️ conmigo desde aquel día en que nuestras miradas se
+        cruzaron sin plan. Gracias por tu ternura, por tu luz, por tu
+        constancia.❤️ <br /><br />
+        Estos cinco años me ❤️ han enseñado que el amor verdadero no hace ruido;
+        llega suave, como tú llegaste a mi vida. <br /><br />
+        Te amo, y quiero seguir ❤️ construyendo nuestro futuro, paso a paso juntos bb. ❤️
+      </p>
+    </div>
+
+    <script>
+      const data = [
+        {
+          fecha: "05 / 11 / 2021 — El Inicio",
+          texto:
+            "En Renacer para Cristo te vi mirando al techo, como si conversarás con el cielo. Nuestras hermanas hablaron y esa noche comenzamos a escribir nuestra historia. ❤️",
+        },
+        {
+          fecha: "06 / 12 / 2021 — El Sí",
+          texto:
+            "Con miedo y valentía te pedí que fueras mi novia. Dijiste que sí, y mi vida cambió para siempre. ❤️",
+        },
+        {
+          fecha: "17 / 12 / 2021 — Primera Visita",
+          texto:
+            "Viniste a casa de mi hermana. Ahí compartimos nuestro primer beso, un momento que aún guardo en mi alma. ❤️",
+        },
+        {
+          fecha: "27 / 02 / 2022 — Un Paso Más",
+          texto:
+            "Ese día dimos un paso más profundo. Porque nos entregamos en cuerpo y alma por primera vez. ❤️",
+        },
+      ];
+
+      const container = document.getElementById("events-container");
+
+      data.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "event";
+
+        div.innerHTML = `
+        <div class="dot"></div>
+        <h3>${item.fecha}</h3>
+        <p>${item.texto}</p>
+      `;
+
+        container.appendChild(div);
+      });
+
+      const events = document.querySelectorAll(".event");
+
+      function reveal() {
+        const trigger = window.innerHeight - 120;
+        events.forEach((ev) => {
+          const top = ev.getBoundingClientRect().top;
+          if (top < trigger) ev.classList.add("active");
+        });
+      }
+
+      window.addEventListener("scroll", reveal);
+      reveal();
+    </script>
+  </body>
+</html>
